@@ -1,18 +1,42 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container">
+        <a routerLink="/" class="navbar-brand">Angular Google sheet</a>
+        <button class="navbar-toggler" type="button" (click)="toggleNavBar()" [attr.aria-expanded]="showNav" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+        <div class="collapse navbar-collapse" [class.show]="showNav" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a routerLink="/simple" routerLinkActive="active">Simple Demo</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/hooks" routerLinkActive="active">Hooks Demo</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/about" routerLinkActive="active">About</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav justify-content-end">
+                <div *ngIf="isSignedIn">
+                    <button class="sign-out" matTooltip="Sign out" (click)="signOut()">Sign out
+						</button>
+                </div>
+                <div [style.display]="googleDisplay">
+                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
+                    </div>
+                </div>
+            </ul>
+
+        </div>
+    </div>
+</nav>
 <h1>Demonstration of Using Google Sheets API</h1>
-<div *ngIf="isSignedIn">
-	<button class="sign-out" matTooltip="Sign out" (click)="signOut()">Sign out
-	</button>
-</div>
-<div [style.display]="googleDisplay">
-	<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
-	</div>
-</div>
 <nav>
-	<a routerLink="/simple" routerLinkActive="active">
-		Simple Demo</a>
-	<a routerLink="/hooks" routerLinkActive="active">
-		Hooks Demo</a>
-	<a routerLink="/about" routerLinkActive="active">
+    <a routerLink="/simple" routerLinkActive="active">
+		Google Sheet</a>
+    <a routerLink="/hooks" routerLinkActive="active">
+		User Auth</a>
+    <a routerLink="/about" routerLinkActive="active">
 		About</a>
 </nav>
 <router-outlet></router-outlet>
