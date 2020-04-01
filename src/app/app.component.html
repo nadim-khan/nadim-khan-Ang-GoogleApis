@@ -6,45 +6,60 @@
 		  </button>
         <div class="collapse navbar-collapse" [class.show]="showNav" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <li *ngIf="isGSignedIn" class="nav-item">
                     <a routerLink="/simple" routerLinkActive="active">Google Sheet</a>
                 </li>
-                <li class="nav-item">
+                <li *ngIf="isGSignedIn" class="nav-item">
                     <a routerLink="/hooks" routerLinkActive="active">User Auth</a>
                 </li>
-                <li class="nav-item">
+                <li *ngIf="isGSignedIn" class="nav-item">
                     <a routerLink="/about" routerLinkActive="active">About</a>
                 </li>
             </ul>
             <ul class="navbar-nav justify-content-end">
-                <div [style.display]="googleDisplay">
-                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
+                <button [style.display]="googleDisplay" *ngIf="!isMSignedIn" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
+                </button>
+                <div *ngIf="!isGSignedIn && !isMSignedIn">
+                    <div (click)="msSignIn()" class="btn btn-block btn-social msLogin">
+                        <span [ngStyle]="{'background':'red'}" class="fa fa-windows"></span> <span class="loginFont">MS Login </span>
                     </div>
                 </div>
-                <li class="dropdown" *ngIf="isGSignedIn">
-                    <a href="javascript:undefined" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                        <div *ngIf="isGSignedIn && currentUserInfo.UK; then userAvatar else defaultAvatar"></div>
-                        <ng-template #userAvatar>
-                            <img [src]="currentUserInfo.UK" class="rounded-circle align-self-center mr-2" style="width: 32px;">
-                        </ng-template>
-                        <ng-template #defaultAvatar>
-                            <fa-icon [icon]="[ 'far', 'user-circle' ]" fixedWidth="true" size="lg" class="rounded-circle align-self-center mr-2"></fa-icon>
-                        </ng-template>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <h5 *ngIf="currentUserInfo" class="dropdown-item-text mb-0">{{currentUserInfo.Ad}}</h5>
-                        <p *ngIf="currentUserInfo" class="dropdown-item-text text-muted mb-0">{{currentUserInfo.zu}}</p>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:undefined" role="button" (click)="signOut()">Sign Out</a>
-                    </ul>
+                <li class="dropdown" *ngIf="isGSignedIn || isMSignedIn">
+                    <div *ngIf="isMSignedIn ; then MSuser else GoogleUser"></div>
+                    <ng-template #MSuser>
+
+                    </ng-template>
+                    <ng-template #GoogleUser>
+                        <a href="javascript:undefined" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                            <div *ngIf="isGSignedIn && currentUserInfo.UK; then userAvatar else defaultAvatar"></div>
+                            <ng-template #userAvatar>
+                                <img [src]="currentUserInfo.UK" class="rounded-circle align-self-center mr-2" style="width: 32px;">
+                            </ng-template>
+                            <ng-template #defaultAvatar>
+                                <fa-icon [icon]="[ 'far', 'user-circle' ]" fixedWidth="true" size="lg" class="rounded-circle align-self-center mr-2"></fa-icon>
+                            </ng-template>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <h5 *ngIf="currentUserInfo" class="dropdown-item-text mb-0">{{currentUserInfo.Ad}}</h5>
+                            <p *ngIf="currentUserInfo" class="dropdown-item-text text-muted mb-0">{{currentUserInfo.zu}}</p>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:undefined" role="button" (click)="signOut()">Sign Out</a>
+                        </ul>
+                    </ng-template>
+
+
                 </li>
             </ul>
 
         </div>
     </div>
 </nav>
-<h1>Demonstration of Using Google Sheets API</h1>
-<nav>
+<h1>Google and Microsoft Graph API's</h1>
+<div *ngIf="!isGSignedIn" class="jumbotron">
+    <h3> Sign in as Google Or Microsoft User to See this in action</h3>
+</div>
+
+<nav *ngIf="isGSignedIn">
     <a routerLink="/simple" routerLinkActive="active">
 		Google Sheet</a>
     <a routerLink="/hooks" routerLinkActive="active">

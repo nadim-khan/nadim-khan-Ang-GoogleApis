@@ -1,6 +1,6 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PageNotFoundComponent }    from './not-found.component';
+import { PageNotFoundComponent } from './not-found.component';
 
 const appRoutes: Routes = [
   { path: 'privacy',   redirectTo: 'privacy.html' },
@@ -22,7 +22,6 @@ const appRoutes: Routes = [
     RouterModule
   ],
   providers: [
-    
   ]
 })
 export class AppRoutingModule { }

@@ -13,6 +13,7 @@ declare global {
 })
 export class AppComponent implements OnInit {
   public isGSignedIn = false;
+  public isMSignedIn = false;
   public googleDisplay = 'block';
   currentUserInfo;
 
@@ -37,6 +38,13 @@ export class AppComponent implements OnInit {
     this.isGSignedIn = this.gdata.isSignedIn;
     this.googleDisplay = this.gdata.googleDisplay;
     this.cd.detectChanges();
+  }
+
+  msSignIn() {
+    this.isMSignedIn = true;
+  }
+  msSignOut() {
+    this.isMSignedIn = false;
   }
 
   ngOnInit() { }

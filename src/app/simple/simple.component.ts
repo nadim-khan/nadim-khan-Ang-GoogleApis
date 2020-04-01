@@ -15,34 +15,34 @@ export class SimpleComponent implements OnInit {
 
   constructor(private cd: ChangeDetectorRef,
     public gauth: GoogleAuthService) {
-    this.output = "Enter a spreadsheet id and range then press submit. "
-    + "Ensure that third-party cookies are enabled in your browser settings.";
+    this.output = 'Enter a spreadsheet id and range then press submit. '
+    + 'Ensure that third-party cookies are enabled in your browser settings.';
   }
 
   ngOnInit() { }
 
   async onSubmit() {
-    this.output = "Processing submission...";
+    this.output = 'Processing submission...';
     console.log(JSON.stringify(this.model));
     await this.gauth.loadClient();
-    console.log("client loaded");
+    console.log('client loaded');
     await this.gauth.loadSheetsAPI();
-    console.log("sheets v4 loaded");
-    
+    console.log('sheets v4 loaded');
+
     gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: this.model.sheetId,
       range: this.model.range
     }).then((response) => {
-      console.log("Range retrieved: "
+      console.log('Range retrieved: '
         + response.result.values[0]);
-      this.output = "Data found: \n";
-      for (let v of response.result.values) {
-        this.output += v + "\n";
+      this.output = 'Data found: \n';
+      for (const v of response.result.values) {
+        this.output += v + '\n';
       }
       this.cd.detectChanges();
     }, (error) => {
-      this.output = "Error: \n";
-      this.output += error.result.error.message + "\n";
+      this.output = 'Error: \n';
+      this.output += error.result.error.message + '\n';
       this.cd.detectChanges();
     });
 

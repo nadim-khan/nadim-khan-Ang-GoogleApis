@@ -1,11 +1,35 @@
 .g-signin2 {
-    float: right;
-  }
+    background-color: transparent;
+}
 
-  .sign-out {
+.sign-out {
     background-color: #4285f4;
     color: white;
     float: right;
     font-size: 19px;
-  
-  }
+}
+
+.msLogin {
+    background-color: #4285f4;
+    padding: 4.5px 5px 1px 0;
+    float: left;
+}
+
+.loginFont {
+    font-size: 13px;
+    font-family: Roboto, arial, sans-serif;
+    color: white;
+    font-weight: 400;
+}
+
+.fa-windows:before {
+    color: #4285f4;
+    background: white;
+    font-size: 22px;
+    padding: 4.5px 4.5px 4.5px 4.5px;
+}
+
+button .btn .btn-block .btn-social .btn-microsoft {
+    box-sizing: border-box;
+    border: 1px solid white;
+}
