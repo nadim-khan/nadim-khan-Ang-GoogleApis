@@ -12,8 +12,9 @@ declare global {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public isSignedIn: boolean = false;
-  public googleDisplay = "block";
+  public isGSignedIn = false;
+  public googleDisplay = 'block';
+  currentUserInfo;
 
   constructor(public gdata: GoogleAuthService,
     private cd: ChangeDetectorRef) {
@@ -21,17 +22,19 @@ export class AppComponent implements OnInit {
   }
 
   onSignIn(googleUser) {
+    this.currentUserInfo = googleUser.Qt;
+    console.log(this.currentUserInfo);
     this.gdata.onSignIn(googleUser);
-    this.isSignedIn = this.gdata.isSignedIn;
+    this.isGSignedIn = this.gdata.isSignedIn;
     this.googleDisplay = this.gdata.googleDisplay;
     this.cd.detectChanges();
   }
 
   public async signOut() {
-    console.log("calling gdata signout...");
+    console.log('calling gdata signout...');
     await this.gdata.signOut();
-    console.log("gdata signout finished");
-    this.isSignedIn = this.gdata.isSignedIn;
+    console.log('gdata signout finished');
+    this.isGSignedIn = this.gdata.isSignedIn;
     this.googleDisplay = this.gdata.googleDisplay;
     this.cd.detectChanges();
   }

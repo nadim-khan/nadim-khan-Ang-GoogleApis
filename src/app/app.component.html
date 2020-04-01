@@ -7,24 +7,37 @@
         <div class="collapse navbar-collapse" [class.show]="showNav" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a routerLink="/simple" routerLinkActive="active">Simple Demo</a>
+                    <a routerLink="/simple" routerLinkActive="active">Google Sheet</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/hooks" routerLinkActive="active">Hooks Demo</a>
+                    <a routerLink="/hooks" routerLinkActive="active">User Auth</a>
                 </li>
                 <li class="nav-item">
                     <a routerLink="/about" routerLinkActive="active">About</a>
                 </li>
             </ul>
             <ul class="navbar-nav justify-content-end">
-                <div *ngIf="isSignedIn">
-                    <button class="sign-out" matTooltip="Sign out" (click)="signOut()">Sign out
-						</button>
-                </div>
                 <div [style.display]="googleDisplay">
                     <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
                     </div>
                 </div>
+                <li class="dropdown" *ngIf="isGSignedIn">
+                    <a href="javascript:undefined" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                        <div *ngIf="isGSignedIn && currentUserInfo.UK; then userAvatar else defaultAvatar"></div>
+                        <ng-template #userAvatar>
+                            <img [src]="currentUserInfo.UK" class="rounded-circle align-self-center mr-2" style="width: 32px;">
+                        </ng-template>
+                        <ng-template #defaultAvatar>
+                            <fa-icon [icon]="[ 'far', 'user-circle' ]" fixedWidth="true" size="lg" class="rounded-circle align-self-center mr-2"></fa-icon>
+                        </ng-template>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <h5 *ngIf="currentUserInfo" class="dropdown-item-text mb-0">{{currentUserInfo.Ad}}</h5>
+                        <p *ngIf="currentUserInfo" class="dropdown-item-text text-muted mb-0">{{currentUserInfo.zu}}</p>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="javascript:undefined" role="button" (click)="signOut()">Sign Out</a>
+                    </ul>
+                </li>
             </ul>
 
         </div>
