@@ -33,3 +33,15 @@ button .btn .btn-block .btn-social .btn-microsoft {
     box-sizing: border-box;
     border: 1px solid white;
 }
+
+.col-sm-2 {
+    height: 100vh;
+    background: #343a4088;
+}
+
+#mainContent {
+    max-height: 85vh;
+    max-width: 100vw;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

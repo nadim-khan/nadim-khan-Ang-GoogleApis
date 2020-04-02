@@ -9,9 +9,9 @@
                 <li *ngIf="isGSignedIn" class="nav-item">
                     <a routerLink="/simple" routerLinkActive="active">Google Sheet</a>
                 </li>
-                <li *ngIf="isGSignedIn" class="nav-item">
+                <!-- <li *ngIf="isGSignedIn" class="nav-item">
                     <a routerLink="/hooks" routerLinkActive="active">User Auth</a>
-                </li>
+                </li> -->
                 <li *ngIf="isGSignedIn" class="nav-item">
                     <a routerLink="/about" routerLinkActive="active">About</a>
                 </li>
@@ -54,17 +54,17 @@
         </div>
     </div>
 </nav>
-<h1>Google and Microsoft Graph API's</h1>
-<div *ngIf="!isGSignedIn" class="jumbotron">
-    <h3> Sign in as Google Or Microsoft User to See this in action</h3>
+<div class="container-fluid" id="mainContent">
+    <div *ngIf="!isGSignedIn" class="jumbotron">
+        <h3> Sign in as Google Or Microsoft User to See this in action</h3>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <h1>Google and Microsoft Graph API's</h1>
+            <router-outlet></router-outlet>
+        </div>
+        <div *ngIf="isGSignedIn" class="col-sm-1">
+        </div>
+    </div>
 </div>
-
-<nav *ngIf="isGSignedIn">
-    <a routerLink="/simple" routerLinkActive="active">
-		Google Sheet</a>
-    <a routerLink="/hooks" routerLinkActive="active">
-		User Auth</a>
-    <a routerLink="/about" routerLinkActive="active">
-		About</a>
-</nav>
-<router-outlet></router-outlet>

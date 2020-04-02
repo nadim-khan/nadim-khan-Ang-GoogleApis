@@ -11,11 +11,9 @@ import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
 import { GoogleAuthService } from './google-auth.service';
 import { JsLoaderService } from './js-loader.service';
 import { SimpleComponent } from './simple/simple.component';
-import { HooksComponent } from './hooks/hooks.component';
 import { AboutComponent } from './about/about.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SimpleRoutingModule } from './simple/simple-routing.module';
-import { HooksRoutingModule } from './hooks/hooks-routing.module';
 import { AboutRoutingModule } from './about/about-routing.module';
 
 library.add(faExternalLinkAlt);
@@ -27,14 +25,12 @@ library.add(faUserCircle);
     NgbModule,
     FontAwesomeModule,
     SimpleRoutingModule,
-    HooksRoutingModule,
     AboutRoutingModule,
     AppRoutingModule,
   ],
   declarations: [
     AppComponent,
     SimpleComponent,
-    HooksComponent,
     AboutComponent,
     PageNotFoundComponent
     ],
